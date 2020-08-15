@@ -1,0 +1,22 @@
+rem pairoj101
+@echo off
+rem Copy edit only all file to Destination anoter computer
+rem set "source=\\192.168.100.1\backup"
+rem set "dest=\\192.168.100.20\backup"
+
+
+set "source=E:\BK_SQL"
+set "dest=\\nas-backup\bak_sqlserver"
+
+pushd "%source%" ||(
+   echo.Source does not exist&pause&goto EOF)
+   rem echo.Source does not exist&pause&goto EOF)
+
+for /f "tokens=*" %%f in (
+   'dir /A-D /OD /B') Do set "file=%%f"
+
+popd
+
+
+rem move /-Y "%source%\%file%" "%dest%\" 
+xcopy /y /s /d /e "%source%\%file%" "%dest%\" 
